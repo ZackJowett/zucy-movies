@@ -3,7 +3,7 @@ import { Card, Button, Badge } from "react-bootstrap";
 import AdditionalInfo from "./AdditionalInfo";
 
 const MovieCard = ({ movie }) => {
-	const url = `http://www.omdbapi.com/?apikey=a83cc6af&t=${movie}`;
+	const url = `https://www.omdbapi.com/?apikey=a83cc6af&t=${movie}`;
 
 	// State for Movie data
 	const [
