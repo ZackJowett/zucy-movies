@@ -1,0 +1,108 @@
+/* Variables */
+:root {
+	--primary: #f58800;
+	--secondary: #f8bc24;
+	--alt1: #266867;
+	--alt2: #1a4645;
+	--dark: #051821;
+}
+
+/*
+=============================
+DEFAULT OVERRIDES
+=============================
+*/
+h1 {
+	color: var(--primary);
+	font-weight: 650;
+	text-align: center;
+}
+
+p {
+	color: white;
+	text-align: center;
+}
+
+header {
+	margin-top: 2rem;
+}
+
+/*
+=============================
+OTHER
+=============================
+*/
+.span-bold {
+	font-weight: 450;
+}
+
+.span-float-right {
+	float: right;
+}
+/*
+=============================
+FORMS
+=============================
+*/
+.search-wrapper {
+	width: 100%;
+	margin-top: 5rem;
+}
+
+.search-form {
+	width: 80%;
+	max-width: 40rem;
+	margin: 0 auto;
+}
+
+.form-label {
+	color: var(--primary);
+	font-weight: 600;
+	margin: 0 !important;
+}
+
+.form-text-input {
+	margin: 0.5rem auto 1.5rem auto;
+}
+
+/*
+=============================
+CARDS
+=============================
+*/
+
+.movie-card-wrapper {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin-top: 5rem;
+}
+
+.movie-card {
+	width: 80%;
+	max-width: 20rem;
+	min-width: 10rem;
+}
+
+.movie-card-title-wrapper {
+	margin-bottom: 1rem;
+}
+
+.movie-card-badge {
+	margin-right: 0.5rem;
+	margin-top: 0.5rem;
+}
+
+.movie-card-text {
+	color: black;
+	text-align: left;
+}
+
+.movie-card-button {
+	width: 50%;
+}
+
+.movie-card-button:hover {
+	width: 50%;
+}
