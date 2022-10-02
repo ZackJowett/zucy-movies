@@ -1,4 +1,4 @@
-import { ListGroup, Card, Button } from "react-bootstrap";
+import { ListGroup, Card } from "react-bootstrap";
 
 const AdditionalInfo = ({ movie }) => {
 	return (
@@ -43,7 +43,7 @@ const AdditionalInfo = ({ movie }) => {
 					<span className="span-bold">Awards</span>{" "}
 					<span className="span-float-right">{movie.Awards}</span>
 				</ListGroup.Item>
-				{movie.Website != "N/A" ? (
+				{movie.Website !== "N/A" ? (
 					<div>
 						<Card.Header>Links</Card.Header>
 						<ListGroup.Item>
