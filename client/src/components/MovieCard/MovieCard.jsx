@@ -31,7 +31,11 @@ const MovieCard = ({ movie }) => {
 				<p>Loading...</p>
 			) : (
 				<Card className="movie-card">
-					<Card.Img variant="bottom" src={data.Poster} />
+					<Card.Img
+						className="movie-card-image"
+						variant="bottom"
+						src={data.Poster}
+					/>
 					<Card.Body>
 						<div className="movie-card-title-wrapper">
 							<Card.Title className="movie-card-title">

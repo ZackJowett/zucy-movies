@@ -9,13 +9,23 @@
 
 /*
 =============================
+FONTS
+=============================
+*/
+@font-face {
+	font-family: porkys;
+	src: url("../../public/fonts/porkys.TTF");
+}
+
+/*
+=============================
 DEFAULT OVERRIDES
 =============================
 */
 h1 {
 	color: var(--primary);
-	font-weight: 650;
 	text-align: center;
+	font-family: "porkys";
 }
 
 p {
@@ -46,7 +56,7 @@ FORMS
 */
 .search-wrapper {
 	width: 100%;
-	margin-top: 5rem;
+	margin-top: 2rem;
 }
 
 .search-form {
@@ -59,10 +69,12 @@ FORMS
 	color: var(--primary);
 	font-weight: 600;
 	margin: 0 !important;
+	font-family: "Courier New", monospace;
 }
 
 .form-text-input {
 	margin: 0.5rem auto 1.5rem auto;
+	font-family: "Courier New", monospace;
 }
 
 /*
@@ -76,13 +88,21 @@ CARDS
 	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: center;
-	margin-top: 5rem;
+	margin-top: 2rem;
 }
 
 .movie-card {
 	width: 80%;
 	max-width: 20rem;
 	min-width: 10rem;
+	border-color: white !important;
+	border-width: 0px !important;
+	border-radius: 20px !important;
+	margin-bottom: 10%;
+}
+
+.movie-card-image {
+	border-radius: 20px !important;
 }
 
 .movie-card-title-wrapper {

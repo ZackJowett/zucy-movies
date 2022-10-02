@@ -28,8 +28,8 @@ function App() {
 	return (
 		<main>
 			<Header />
-			{movie ? <MovieCard movie={movie} /> : null}
 			<MovieForm setMovie={setMovie} />
+			{movie ? <MovieCard movie={movie} /> : null}
 		</main>
 	);
 }
