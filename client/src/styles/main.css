@@ -128,7 +128,6 @@ CARDS
 }
 
 .movie-card-additional-info-wrapper,
-.list-group,
-.list-group-item {
+.list-group {
 	border-radius: inherit !important;
 }
