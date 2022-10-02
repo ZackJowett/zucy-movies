@@ -126,3 +126,9 @@ CARDS
 .movie-card-button:hover {
 	width: 50%;
 }
+
+.movie-card-additional-info-wrapper,
+.list-group,
+.list-group-item {
+	border-radius: inherit !important;
+}
