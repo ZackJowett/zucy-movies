@@ -4,6 +4,7 @@ import MovieCard from "./components/MovieCard/MovieCard";
 import { useEffect, useState } from "react";
 import "./styles/main.css";
 import "./styles/custom.scss";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
 	// Set Background Colour
