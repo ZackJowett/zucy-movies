@@ -22,3 +22,6 @@ app.get("/", mainRouter);
 app.listen(port, () => {
 	console.log(`App started listening on port ${port}...`);
 });
+
+// Connect to database
+require("./models/db");
