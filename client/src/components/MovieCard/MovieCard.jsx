@@ -3,7 +3,7 @@ import { Card, Button, Badge } from "react-bootstrap";
 import AdditionalInfo from "./AdditionalInfo";
 
 const MovieCard = ({ movie }) => {
-	const url = `https://www.omdbapi.com/?apikey=a83cc6af&t=${movie}`;
+	const url = `api/searchFilm/${movie}`;
 
 	// State for Movie data
 	const [
@@ -17,9 +17,15 @@ const MovieCard = ({ movie }) => {
 		setShowInfo
 	] = useState(false);
 
-	useEffect(() => {
-		fetch(url).then((res) => res.json()).then((data) => setData(data));
-	});
+	useEffect(
+		() => {
+			setData(null);
+			fetch(url).then((res) => res.json()).then((data) => setData(data));
+		},
+		[
+			movie
+		]
+	);
 
 	const updateShowInfo = () => {
 		setShowInfo(!showInfo);
@@ -44,7 +50,7 @@ const MovieCard = ({ movie }) => {
 							<Card.Subtitle>{data.Genre}</Card.Subtitle>
 							{data.Ratings.map((rating, index) => (
 								<Badge
-									bg="info"
+									bg="primary"
 									className="movie-card-badge"
 									pill
 									key={index}
