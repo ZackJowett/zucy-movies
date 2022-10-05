@@ -2,6 +2,7 @@
 const express = require("express");
 const path = require("path");
 const { mainRouter } = require("./routes/mainRouter");
+const { apiRouter } = require("./routes/apiRouter");
 
 // Create app
 const app = express();
@@ -17,7 +18,9 @@ app.use(express.static(path.join(__dirname, "/public")));
 app.use(express.json()); // needed if POST data is in JSON format
 app.use(express.urlencoded({ extended: false })); // only needed for URL-encoded input
 
-app.get("/", mainRouter);
+// Routes
+app.use("/api", apiRouter);
+app.use("*", mainRouter);
 
 app.listen(port, () => {
 	console.log(`App started listening on port ${port}...`);
@@ -25,3 +28,5 @@ app.listen(port, () => {
 
 // Connect to database
 require("./models/db");
+
+module.exports = app;
