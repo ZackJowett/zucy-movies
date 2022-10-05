@@ -3,7 +3,7 @@ const { Schema } = mongoose;
 
 // Film Schema for storing film information
 // Follows similar structure and type naming to the OMDb api
-const Film = new Schema({
+const filmSchema = new Schema({
 	_id: String, // IMDb id
 	Title: String,
 	Year: String,
@@ -34,4 +34,5 @@ const Film = new Schema({
 	Response: String
 });
 
-export default Film;
+const Film = mongoose.model("Film", filmSchema);
+module.exports = Film;
