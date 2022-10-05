@@ -8,7 +8,7 @@ mongoose.connect(
 	{
 		useNewUrlParser: true,
 		useUnifiedTopology: true,
-		dbName: "mainDB"
+		dbName: "main"
 	}
 );
 
