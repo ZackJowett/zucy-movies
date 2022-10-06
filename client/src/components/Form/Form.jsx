@@ -30,6 +30,10 @@ const MovieForm = ({ setMovie }) => {
 							placeholder="E.g. Taxi Driver"
 							onChange={updateTitle}
 						/>
+						<Form.Text className="text-muted">
+							Note: First-time searches may take a while to load.
+							This is to ensure maximum information is available.
+						</Form.Text>
 					</Form.Group>
 					<Button
 						variant="info"
