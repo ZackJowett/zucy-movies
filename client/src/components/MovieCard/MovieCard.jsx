@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { Card, Button, Badge } from "react-bootstrap";
-import AdditionalInfo from "./AdditionalInfo";
+import { Card } from "react-bootstrap";
+import CardBody from "./CardBody";
+import CardImage from "./CardImage";
 
 const MovieCard = ({ movie }) => {
 	const url = `api/searchFilm/${movie}`;
@@ -10,12 +11,6 @@ const MovieCard = ({ movie }) => {
 		data,
 		setData
 	] = useState();
-
-	// State for Additional Info
-	const [
-		showInfo,
-		setShowInfo
-	] = useState(false);
 
 	useEffect(
 		() => {
@@ -27,59 +22,19 @@ const MovieCard = ({ movie }) => {
 		]
 	);
 
-	const updateShowInfo = () => {
-		setShowInfo(!showInfo);
-	};
-
 	return (
 		<div className="movie-card-wrapper">
 			{!data ? (
 				<p>Loading...</p>
-			) : (
+			) : data.length > 0 ? (
 				data.map((currData, index) => (
-					<Card className="movie-card">
-						<Card.Img
-							className="movie-card-image"
-							variant="bottom"
-							src={currData.poster}
-						/>
-						<Card.Body>
-							<div className="movie-card-title-wrapper">
-								<Card.Title className="movie-card-title">
-									{currData.title}
-								</Card.Title>
-								<Card.Subtitle>
-									{currData.genre?.map((currGenre) => (
-										<span>{currGenre.name}</span>
-									))}
-								</Card.Subtitle>
-
-								{/* {data.Ratings.map((rating, index) => (
-									<Badge
-										bg="primary"
-										className="movie-card-badge"
-										pill
-										key={index}
-									>
-										{rating.Value}
-									</Badge>
-								))} */}
-							</div>
-							<Card.Text className="movie-card-text">
-								{currData.overview}
-							</Card.Text>
-							<Button
-								variant="outline-info"
-								onClick={updateShowInfo}
-								className="movie-card-button"
-							>
-								{!showInfo ? "Details" : "Hide"}
-							</Button>
-						</Card.Body>
-
-						{!showInfo ? "" : <AdditionalInfo movie={data} />}
+					<Card className="movie-card" key={currData.id}>
+						<CardImage url={currData.poster} />
+						<CardBody currData={currData} />
 					</Card>
 				))
+			) : (
+				<p> I couldn't find anything, sorry.</p>
 			)}
 		</div>
 	);
