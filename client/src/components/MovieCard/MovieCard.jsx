@@ -36,43 +36,50 @@ const MovieCard = ({ movie }) => {
 			{!data ? (
 				<p>Loading...</p>
 			) : (
-				<Card className="movie-card">
-					<Card.Img
-						className="movie-card-image"
-						variant="bottom"
-						src={data.Poster}
-					/>
-					<Card.Body>
-						<div className="movie-card-title-wrapper">
-							<Card.Title className="movie-card-title">
-								{data.Title}
-							</Card.Title>
-							<Card.Subtitle>{data.Genre}</Card.Subtitle>
-							{data.Ratings.map((rating, index) => (
-								<Badge
-									bg="primary"
-									className="movie-card-badge"
-									pill
-									key={index}
-								>
-									{rating.Value}
-								</Badge>
-							))}
-						</div>
-						<Card.Text className="movie-card-text">
-							{data.Plot}
-						</Card.Text>
-						<Button
-							variant="outline-info"
-							onClick={updateShowInfo}
-							className="movie-card-button"
-						>
-							{!showInfo ? "Details" : "Hide"}
-						</Button>
-					</Card.Body>
+				data.map((currData, index) => (
+					<Card className="movie-card">
+						<Card.Img
+							className="movie-card-image"
+							variant="bottom"
+							src={currData.poster}
+						/>
+						<Card.Body>
+							<div className="movie-card-title-wrapper">
+								<Card.Title className="movie-card-title">
+									{currData.title}
+								</Card.Title>
+								<Card.Subtitle>
+									{currData.genre?.map((currGenre) => (
+										<span>{currGenre.name}</span>
+									))}
+								</Card.Subtitle>
 
-					{!showInfo ? "" : <AdditionalInfo movie={data} />}
-				</Card>
+								{/* {data.Ratings.map((rating, index) => (
+									<Badge
+										bg="primary"
+										className="movie-card-badge"
+										pill
+										key={index}
+									>
+										{rating.Value}
+									</Badge>
+								))} */}
+							</div>
+							<Card.Text className="movie-card-text">
+								{currData.overview}
+							</Card.Text>
+							<Button
+								variant="outline-info"
+								onClick={updateShowInfo}
+								className="movie-card-button"
+							>
+								{!showInfo ? "Details" : "Hide"}
+							</Button>
+						</Card.Body>
+
+						{!showInfo ? "" : <AdditionalInfo movie={data} />}
+					</Card>
+				))
 			)}
 		</div>
 	);

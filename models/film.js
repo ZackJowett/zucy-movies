@@ -4,34 +4,47 @@ const { Schema } = mongoose;
 // Film Schema for storing film information
 // Follows similar structure and type naming to the OMDb api
 const filmSchema = new Schema({
-	_id: String, // IMDb id
-	Title: String,
-	Year: String,
-	Rated: String,
-	Released: String,
-	Runtime: String,
-	Genre: String,
-	Director: String,
-	Writer: String,
-	Actors: String,
-	Plot: String,
-	Language: String,
-	Country: String,
-	Awards: String,
-	Poster: String, // URL to image
-	Ratings: [
+	_id: Number,
+	imdb_id: String,
+	title: String,
+	tagline: String,
+	overview: String,
+	release_date: String,
+	runtime: Number,
+	adult: Boolean,
+	languages: [
 		{
-			Source: String,
-			Value: String
+			language_code: String,
+			name: String
 		}
 	],
-	imdbVotes: String,
-	Type: String,
-	DVD: String,
-	BoxOffice: String,
-	Production: String,
-	Website: String,
-	Response: String
+	original_title: String,
+	original_language: String,
+	genres: [
+		{ id: Number, name: String }
+	],
+	poster: String,
+	backdrop: String,
+	budget: Number,
+	revenue: Number,
+	production_status: String,
+	production_companies: [
+		{
+			name: String,
+			id: Number,
+			logo_path: String,
+			origin_country: String
+		}
+	],
+	production_countries: [
+		{
+			country_code: String,
+			name: String
+		}
+	],
+	popularity: Number,
+	vote_average: Number,
+	vote_count: Number
 });
 
 const Film = mongoose.model("Film", filmSchema);

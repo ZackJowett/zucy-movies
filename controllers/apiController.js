@@ -2,24 +2,38 @@
 const fetch = require("node-fetch");
 const Film = require("../models/film");
 
-// Searches OMDb for the film information, then saves that information to
+// API Key
+const API_KEY = "1dc66aa91a6dcdc230403d462ecdb69c";
+const basicURL = "https://image.tmdb.org/t/p/original/";
+
+// Searches TMDb for the film information, then saves that information to
 // mongodb if it doesn't exist in there already.
 // Returns a json response of the film information
 const searchFilm = async (req, res) => {
 	// Search OMDb for film
-	const url = `https://www.omdbapi.com/?apikey=a83cc6af&t=${req.params.film}`;
-	const omdbResponse = await (await fetch(url)).json();
+	const query = encodeURIComponent(req.params.film);
+	const urlMovieList = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${query}`;
+	const tmdbResponse = await (await fetch(urlMovieList)).json();
 
 	// Attempt to find movie in db
 	try {
-		const filmInfo = await findFilmById(omdbResponse.imdbID);
-		if (filmInfo) {
-			res.json(filmInfo.toJSON());
-		} else {
-			// Add film to database
-			const newFilmInfo = await addFilm(omdbResponse);
-			res.json(newFilmInfo.toJSON());
+		var jsonResponse = [];
+		// Check if each movie returned by search is in database
+		for (let i = 0; i < tmdbResponse.results.length; i++) {
+			let currMovie = tmdbResponse.results[i];
+			const currMovieInDB = await findFilmById(currMovie.id);
+			if (currMovieInDB) {
+				jsonResponse.push(currMovieInDB.toJSON());
+			} else {
+				// get film details (api request) then add to mongodb
+				const newFilmDetails = await getFilmDetailsFromAPI(
+					currMovie.id
+				);
+				const newFilmInfo = await addFilm(newFilmDetails);
+				jsonResponse.push(newFilmInfo.toJSON());
+			}
 		}
+		res.json(jsonResponse);
 	} catch (err) {
 		console.log(err);
 	}
@@ -30,36 +44,46 @@ const findFilmById = async (id) => {
 	return await Film.findById(id);
 };
 
-// Add a new film to MongoDB
-const addFilm = async (data) => {
-	const newFilm = new Film({
-		_id: data.imdbID,
-		Title: data.Title,
-		Year: data.Year,
-		Rated: data.Rated,
-		Released: data.Released,
-		Runtime: data.Runtime,
-		Genre: data.Genre,
-		Director: data.Director,
-		Writer: data.Writer,
-		Actors: data.Actors,
-		Plot: data.Plot,
-		Language: data.Language,
-		Country: data.Country,
-		Awards: data.Awards,
-		Poster: data.Poster,
-		Ratings: data.Ratings,
-		imdbVotes: data.imdbVotes,
-		Type: data.Type,
-		DVD: data.DVD,
-		BoxOffice: data.BoxOffice,
-		Production: data.Production,
-		Website: data.Website,
-		Response: data.Response
-	});
-
-	const save = await newFilm.save();
-	return newFilm;
+// Get film details from api
+const getFilmDetailsFromAPI = async (movieID) => {
+	const url = `https://api.themoviedb.org/3/movie/${movieID}?api_key=${API_KEY}&language=en-US`;
+	const data = await (await fetch(url)).json();
+	return data;
 };
 
-module.exports = { searchFilm, addFilm };
+// Add a new film to MongoDB
+const addFilm = async (data) => {
+	try {
+		const newFilm = new Film({
+			_id: data.id,
+			imdb_id: data.imdb_id,
+			title: data.title,
+			tagline: data.tagline,
+			overview: data.overview,
+			release_date: data.release_date,
+			runtime: data.runtime,
+			adult: data.adult,
+			languages: data.spoken_languages,
+			original_title: data.original_title,
+			original_language: data.original_language,
+			genres: data.genres,
+			poster: basicURL + data.poster_path,
+			backdrop: data.backdrop_path,
+			budget: data.budget,
+			revenue: data.revenue,
+			production_status: data.status,
+			production_companies: data.production_companies,
+			production_countries: data.production_countries,
+			popularity: data.popularity,
+			vote_average: data.vote_average,
+			vote_count: data.vote_count
+		});
+
+		newFilm.save();
+		return newFilm;
+	} catch (err) {
+		console.log(err);
+	}
+};
+
+module.exports = { searchFilm };
