@@ -19,7 +19,8 @@ const searchFilm = async (req, res) => {
 	try {
 		var jsonResponse = [];
 		// Check if each movie returned by search is in database
-		for (let i = 0; i < tmdbResponse.results.length; i++) {
+		// Only search the first six
+		for (let i = 0; i < tmdbResponse.results.length && i < 6; i++) {
 			let currMovie = tmdbResponse.results[i];
 			const currMovieInDB = await findFilmById(currMovie.id);
 			if (currMovieInDB) {
