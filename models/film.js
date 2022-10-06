@@ -10,14 +10,9 @@ const filmSchema = new Schema({
 	tagline: String,
 	overview: String,
 	release_date: String,
-	runtime: Number,
+	runtime: String,
 	adult: Boolean,
-	languages: [
-		{
-			language_code: String,
-			name: String
-		}
-	],
+	languages: String,
 	original_title: String,
 	original_language: String,
 	genres: [
@@ -26,7 +21,7 @@ const filmSchema = new Schema({
 	poster: String,
 	backdrop: String,
 	budget: Number,
-	revenue: Number,
+	revenue: String,
 	production_status: String,
 	production_companies: [
 		{
@@ -44,7 +39,24 @@ const filmSchema = new Schema({
 	],
 	popularity: Number,
 	vote_average: Number,
-	vote_count: Number
+	vote_count: Number,
+	ratings: [
+		{
+			Source: String,
+			Value: String
+		}
+	],
+	rated: String,
+	year: String,
+	director: String,
+	writer: String,
+	actors: String,
+	plot: String,
+	awards: String,
+	imdbVotes: String,
+	type: String,
+	DVD: String,
+	response: String
 });
 
 const Film = mongoose.model("Film", filmSchema);
