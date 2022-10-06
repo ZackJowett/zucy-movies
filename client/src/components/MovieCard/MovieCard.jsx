@@ -4,7 +4,7 @@ import CardBody from "./CardBody";
 import CardImage from "./CardImage";
 
 const MovieCard = ({ movie }) => {
-	const url = `api/searchFilm/${movie}`;
+	const url = `api/search/${movie}`;
 
 	// State for Movie data
 	const [
