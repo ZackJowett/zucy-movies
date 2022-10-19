@@ -32,7 +32,7 @@ const MovieForm = ({ setMovie }) => {
 						/>
 						<Form.Text className="text-muted">
 							Note: First-time searches may take a while to load.
-							This is to ensure maximum information is available.
+							This allows the proper accumulation of information.
 						</Form.Text>
 					</Form.Group>
 					<Button
