@@ -97,7 +97,7 @@ CARDS
 }
 
 .movie-card {
-	width: 80%;
+	width: 100%;
 	max-width: 20rem;
 	min-width: 10rem;
 	border-color: white !important;
