@@ -115,8 +115,25 @@ CARDS
 	border-radius: 20px !important;
 }
 
+.movie-header {
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+	justify-content: space-between;
+}
+
 .movie-card-title-wrapper {
 	margin-bottom: 1rem;
+	flex: 2;
+}
+
+.movie-card-save-icons {
+	flex: 1;
+	text-align: right;
+}
+
+.movie-card-save-icon {
+	color: var(--primary);
 }
 
 .movie-card-badge {
@@ -141,7 +158,8 @@ CARDS
 	width: 49%;
 }
 
-.movie-card-save {
+.movie-card-save-icon:hover {
+	cursor: pointer;
 }
 
 /* .movie-card-button:hover {

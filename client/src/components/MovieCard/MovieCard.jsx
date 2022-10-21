@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
-import { Card } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
 import CardBody from "./CardBody";
 import CardImage from "./CardImage";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 
 const MovieCard = ({ movie }) => {
 	const url = `api/search/${movie}`;
